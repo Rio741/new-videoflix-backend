@@ -1,0 +1,59 @@
+# 🐍 Python (Django)
+__pycache__/
+*.py[cod]
+*.sqlite3
+db.sqlite3
+*.log
+*.pot
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+
+# 🔥 Django & Migrations
+*/migrations/
+!.gitkeep
+
+# 🚀 Virtuelle Umgebung (Falls du nicht Docker nutzt)
+env/
+venv/
+*.env
+env_lin
+
+# 📦 Abhängigkeiten
+pip-log.txt
+pip-delete-this-directory.txt
+
+# 🌐 Frontend (Angular, Node.js)
+node_modules/
+dist/
+npm-debug.log
+yarn-error.log
+.vscode/
+.idea/
+
+# 🐳 Docker
+*.pid
+*.tar
+logs/
+docker-compose.override.yml
+
+# 🗄 PostgreSQL & Datenbank-Dumps
+pgdata/
+postgres_data/
+*.dump
+
+# SQLite-Datenbank (nur für lokale Entwicklung)
+*.sqlite3
+db.sqlite3
+
+# 📂 Betriebssystem-Dateien
+.DS_Store
+Thumbs.db
+
+folder_tree.txt
+
+media
+
+static
