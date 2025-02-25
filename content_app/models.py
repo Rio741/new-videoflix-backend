@@ -8,6 +8,12 @@ class Genre(models.Model):
     def __str__(self):
         return self.name
 
+    @staticmethod
+    def create_default_genres():
+        default_genres = ["Action", "Drama", "Komödie", "Horror", "Sci-Fi", "Romantik", "Thriller", "Dokumentation"]
+        for genre in default_genres:
+            Genre.objects.get_or_create(name=genre)
+
 
 class Video(models.Model):
     title = models.CharField(max_length=255)
