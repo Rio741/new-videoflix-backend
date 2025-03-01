@@ -1,3 +1,22 @@
 from django.contrib import admin
+from content_app.models import Video
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
+from django.forms import CheckboxSelectMultiple
 
-# Register your models here.
+@admin.register(Video)
+class VideoAdmin(admin.ModelAdmin):
+    list_display = ('title', 'upload_date')
+    search_fields = ('title',)
+    formfield_overrides = {
+        Video.genres.field: {'widget': CheckboxSelectMultiple}
+    }
+
+# class VideoResource(resources.ModelResource):
+    
+#     class META:
+#         model = Video
+        
+# @admin.register(Video)
+# class VideoAdmin(ImportExportModelAdmin):
+#     pass

@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'content_app',
     'user_auth_app',
+    'django_rq',
 ]
 
 MIDDLEWARE = [
@@ -83,6 +84,14 @@ DATABASES = {
     }
 }
 
+RQ_QUEUES = {
+    'default': {
+        'HOST': 'localhost',
+        'PORT': 6379,
+        'DB': 0,
+        'DEFAULT_TIMEOUT': 360,
+    },
+}
 
 
 
