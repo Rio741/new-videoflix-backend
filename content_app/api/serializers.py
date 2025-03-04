@@ -11,7 +11,7 @@ class VideoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Video
-        fields = ["id", "title", "description", "upload_date", "thumbnail", "video_file_1080p", "video_file_720p", "video_file_360p", "genres"]
+        fields = ["id", "title", "description", "upload_date", "thumbnail", "video_file", "genres", "hls_master_playlist"]
 
 class WatchProgressSerializer(serializers.ModelSerializer):
     class Meta:

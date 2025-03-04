@@ -8,6 +8,7 @@ from django.forms import CheckboxSelectMultiple
 class VideoAdmin(admin.ModelAdmin):
     list_display = ('title', 'upload_date')
     search_fields = ('title',)
+    exclude = ('hls_master_playlist',)
     formfield_overrides = {
         Video.genres.field: {'widget': CheckboxSelectMultiple}
     }

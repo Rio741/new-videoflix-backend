@@ -22,6 +22,7 @@ class Video(models.Model):
     thumbnail = models.ImageField(upload_to="thumbnails/")
     video_file = models.FileField(upload_to="videos", blank=True, null=True)
     genres = models.ManyToManyField(Genre, related_name="videos")
+    hls_master_playlist = models.FileField(upload_to="hls/", blank=True, null=True)
 
     def __str__(self):
         return self.title
