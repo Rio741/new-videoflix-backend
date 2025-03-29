@@ -32,8 +32,15 @@ class WatchProgress(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     video = models.ForeignKey(Video, on_delete=models.CASCADE)
     timestamp = models.FloatField(
-        help_text="Letzte Position im Video (in Sekunden)")
+        help_text="Letzte Position im Video (in Sekunden)",
+        default=0
+    )
     updated_at = models.DateTimeField(auto_now=True)
+
+    def save(self, *args, **kwargs):
+        if self.timestamp < 0:
+            self.timestamp = 0
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.user.email} - {self.video.title} ({self.timestamp}s)"

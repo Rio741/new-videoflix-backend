@@ -12,12 +12,3 @@ class VideoAdmin(admin.ModelAdmin):
     formfield_overrides = {
         Video.genres.field: {'widget': CheckboxSelectMultiple}
     }
-
-# class VideoResource(resources.ModelResource):
-    
-#     class META:
-#         model = Video
-        
-# @admin.register(Video)
-# class VideoAdmin(ImportExportModelAdmin):
-#     pass

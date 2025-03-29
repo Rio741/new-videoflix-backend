@@ -6,7 +6,7 @@ from rest_framework.authtoken.models import Token
 from django.shortcuts import get_object_or_404
 from .serializers import RegistrationSerializer, LoginSerializer, PasswordResetConfirmSerializer
 from ..models import User
-from content_app.emails import send_password_reset_email
+from content_app.emails import send_password_reset_email, send_verification_email
 import uuid
 
 class RegistrationView(APIView):
@@ -96,3 +96,22 @@ class PasswordResetConfirmView(APIView):
                             status=status.HTTP_200_OK)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class ResendConfirmationEmailView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        email = request.data.get('email')
+
+        if not email:
+            return Response({"error": "E-Mail wird benötigt."}, status=400)
+
+        user = get_object_or_404(User, email=email)
+
+        if user.is_active:
+            return Response({"message": "Dein Konto ist bereits aktiviert."}, status=400)
+
+        send_verification_email(user.email, user.verification_token)
+
+        return Response({"message": "Eine Bestätigungs-E-Mail wurde erneut gesendet."}, status=200)
