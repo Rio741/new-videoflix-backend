@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: videoflix_db
+      POSTGRES_USER: rio96
+      POSTGRES_PASSWORD: Stampertje
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app
+      - ./media:/usr/src/app/media
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+      - redis
+
+  worker:
+    build: .
+    command: python manage.py rqworker
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - redis
+
+volumes:
+  postgres_data:

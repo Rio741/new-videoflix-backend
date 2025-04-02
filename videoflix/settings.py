@@ -80,19 +80,33 @@ DATABASES = {
         'NAME': 'videoflix_db',
         'USER': 'rio96',
         'PASSWORD': 'Stampertje',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',
     }
 }
 
 RQ_QUEUES = {
     'default': {
-        'HOST': 'localhost',
+        'HOST': 'redis',  # Dienstname des Redis-Containers
         'PORT': 6379,
         'DB': 0,
         'DEFAULT_TIMEOUT': 360,
     },
 }
+
+
+# settings.py
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://redis:6379/1',  # redis ist der Dienstname in docker-compose
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
+
 
 
 
