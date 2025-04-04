@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 
 services:
   db:
@@ -16,22 +16,17 @@ services:
       - "6379:6379"
 
   web:
-    build: .
+    image: rio96/videoflix
     command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/usr/src/app
-      - ./media:/usr/src/app/media
     ports:
-      - 8000:8000
+      - "8000:8000"
     depends_on:
       - db
       - redis
 
   worker:
-    build: .
+    image: rio96/videoflix-worker
     command: python manage.py rqworker
-    volumes:
-      - .:/usr/src/app
     depends_on:
       - redis
 
