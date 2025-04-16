@@ -8,6 +8,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100 MB
+FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600  # 100 MB
+
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
@@ -15,9 +22,9 @@ MEDIA_URL = '/media/'
 SECRET_KEY = 'django-insecure-61p(ec&6$$!siu%o6hpi&1g9ee*$_g!*r=7fsz5u81#_e=lxso'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['34.93.175.192', 'localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = ['videoflix.rio-stenger.de', '34.93.66.101', 'localhost', '127.0.0.1', '0.0.0.0', 'http://localhost:4200']
 
 
 
@@ -44,13 +51,24 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://videoflix.rio-stenger.de',
+    'https://*.rio-stenger.de',
+]
+
+
 
 ROOT_URLCONF = 'videoflix.urls'
 
@@ -89,7 +107,7 @@ DATABASES = {
 
 RQ_QUEUES = {
     'default': {
-        'HOST': 'redis',  # Dienstname des Redis-Containers
+        'HOST': 'redis',
         'PORT': 6379,
         'DB': 0,
         'DEFAULT_TIMEOUT': 360,

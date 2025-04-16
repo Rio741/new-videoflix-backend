@@ -17,18 +17,36 @@ services:
 
   web:
     image: rio96/videoflix
-    command: python manage.py runserver 0.0.0.0:8000
-    ports:
-      - "8000:8000"
+    command: gunicorn videoflix.wsgi:application --bind 0.0.0.0:8000
     depends_on:
       - db
       - redis
+    volumes:
+      - ./media:/usr/src/app/media
 
   worker:
     image: rio96/videoflix-worker
     command: python manage.py rqworker
     depends_on:
       - redis
+    volumes:
+      - ./media:/usr/src/app/media
+    deploy:
+      replicas: 3
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./certbot/www:/var/www/certbot
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - ./staticfiles:/usr/src/app/staticfiles
+      - ./media:/usr/src/app/media
+    depends_on:
+      - web
 
 volumes:
   postgres_data:
