@@ -50,7 +50,6 @@ yarn-error.log
 *.pid
 *.tar
 logs/
-docker-compose.override.yml
 
 # 🗄 Datenbanken
 *.sqlite3

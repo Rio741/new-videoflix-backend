@@ -1,0 +1,12 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rio96/videoflix
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: rio96/videoflix-worker

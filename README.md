@@ -1,24 +1,36 @@
-# 🎬 Videoflix – Deine eigene Video-Plattform
+#  Videoflix – Deine eigene Video-Plattform
 
 Videoflix ist eine Streaming-Plattform, die es erlaubt, Videos hochzuladen, zu streamen und den Fortschritt beim Schauen zu speichern.  
-Das Projekt wurde mit Django umgesetzt und nutzt Docker, Redis und PostgreSQL im Hintergrund.
+Das Projekt wurde mit **Django** umgesetzt und nutzt **Docker**, **Redis** und **PostgreSQL** im Hintergrund.
+
+> 🔗 **Live-Demo:** [https://videoflix.rio-stenger.de]
+> *(Frontend und Backend sind online und verbunden.)*
 
 ---
 
 ## 🚀 Features
 
-- Benutzer-Registrierung & Login mit E-Mail-Verifizierung
-- Video-Upload (inkl. Verarbeitung & HLS-Streaming)
-- Fortschritts-Speicherung beim Anschauen
-- Hintergrundverarbeitung via RQ Worker
-- REST-API (z. B. für das Frontend oder externe Clients)
-- Dockerisierte Umgebung für einfache Entwicklung und Deployment
+- 🔐 Benutzerregistrierung & Login mit E-Mail-Verifizierung
+- 📹 Video-Upload inkl. automatischer Verarbeitung & HLS-Streaming
+- 📊 Fortschritts-Speicherung beim Anschauen
+- 🔁 Hintergrundjobs mit RQ (z. B. für Video-Konvertierung)
+- 🔌 Vollständige REST-API für Integration mit Frontend oder Clients
+- 🐳 Dockerisierte Umgebung für Entwicklung & Deployment
+- ✅ Tests mit `pytest` und `coverage.py` implementiert
 
 ---
 
-## 🐳 Start mit Docker (empfohlen)
+## 🛠️ Technologien
 
-1. Projekt klonen:
-   ```bash
-   git clone https://github.com/dein-name/videoflix.git
-   cd videoflix
+- **Backend:** Django, Django REST Framework
+- **Task-Queue:** Redis + Django-RQ
+- **Datenbank:** PostgreSQL
+- **Containerisierung:** Docker, Docker Compose
+- **Tests:** Pytest, Coverage.py
+- **Deployment:** Docker-Setup auf V-Server (Ubuntu)
+
+---
+
+## 🧪 **Testabdeckung:**  
+- ![Coverage Screenshot](assets/test_coverage.png)  
+- Aktuell bei **88 %** – Ziel: 80 %+
