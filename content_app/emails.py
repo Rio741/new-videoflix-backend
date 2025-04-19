@@ -10,7 +10,7 @@ def send_verification_email(user_email, verification_token):
 
     verification_link = f"{settings.FRONTEND_URL}/verify-email/{verification_token}"
     
-    print(f"🔍 Generierter Verifizierungslink: {verification_link}")  # ✅ Debugging-Ausgabe
+    print(f"🔍 Generierter Verifizierungslink: {verification_link}")
 
     html_message = render_to_string("emails/verify_email.html", {
         "verification_link": verification_link,

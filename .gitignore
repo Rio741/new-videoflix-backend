@@ -1,8 +1,6 @@
 # 🐍 Python (Django)
 __pycache__/
 *.py[cod]
-*.sqlite3
-db.sqlite3
 *.log
 *.pot
 *.pyc
@@ -13,23 +11,38 @@ db.sqlite3
 
 # 🔥 Django & Migrations
 */migrations/
-!.gitkeep
+!*/migrations/__init__.py  # migrations-Ordner ignorieren, außer __init__.py
 
-# 🚀 Virtuelle Umgebung (Falls du nicht Docker nutzt)
+# 🧪 Tests & Coverage
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+*.py,cover
+
+# 🚀 Virtuelle Umgebung (falls nicht Docker)
 env/
 venv/
 *.env
+.env.*
 env_lin
 
-# 📦 Abhängigkeiten
+# 📦 Python packaging
+*.egg-info/
+.eggs/
+build/
+develop-eggs/
+dist/
 pip-log.txt
 pip-delete-this-directory.txt
 
-# 🌐 Frontend (Angular, Node.js)
+# 🌐 Frontend (Node.js, falls nötig)
 node_modules/
 dist/
 npm-debug.log
 yarn-error.log
+
+# 💻 IDE & Editor
 .vscode/
 .idea/
 
@@ -39,21 +52,18 @@ yarn-error.log
 logs/
 docker-compose.override.yml
 
-# 🗄 PostgreSQL & Datenbank-Dumps
+# 🗄 Datenbanken
+*.sqlite3
+db.sqlite3
 pgdata/
 postgres_data/
 *.dump
 
-# SQLite-Datenbank (nur für lokale Entwicklung)
-*.sqlite3
-db.sqlite3
+# 📂 Medien- und statische Dateien
+media/
+static/
 
-# 📂 Betriebssystem-Dateien
+# 📄 Sonstiges
 .DS_Store
 Thumbs.db
-
 folder_tree.txt
-
-media
-
-static
