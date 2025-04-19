@@ -23,8 +23,7 @@ coverage.xml
 # 🚀 Virtuelle Umgebung (falls nicht Docker)
 env/
 venv/
-*.env
-.env.*
+.env
 env_lin
 
 # 📦 Python packaging

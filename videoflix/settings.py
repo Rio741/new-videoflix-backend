@@ -18,9 +18,9 @@ FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600
 # Secret Key aus der .env-Datei
 SECRET_KEY = os.getenv('SECRET_KEY')
 
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
+DEBUG = False
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = ['videoflix.rio-stenger.de', '34.93.66.101', 'localhost', '127.0.0.1', '0.0.0.0', 'http://localhost:4200']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -91,9 +91,9 @@ DATABASES = {
 
 RQ_QUEUES = {
     'default': {
-        'HOST': os.getenv('REDIS_HOST', 'redis'),
-        'PORT': os.getenv('REDIS_PORT', 6379),
-        'DB': os.getenv('REDIS_DB', 0),
+        'HOST': 'redis',
+        'PORT': 6379,
+        'DB': 0,
         'DEFAULT_TIMEOUT': 360,
     },
 }
@@ -101,11 +101,50 @@ RQ_QUEUES = {
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': os.getenv('REDIS_CACHE_LOCATION', 'redis://redis:6379/1'),
+        'LOCATION': 'redis://redis:6379/1',
         'OPTIONS': {
             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
         }
     }
+}
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+LANGUAGE_CODE = 'en-us'
+
+TIME_ZONE = 'UTC'
+
+USE_I18N = True
+
+USE_TZ = True
+
+STATIC_URL = 'static/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = "user_auth_app.User"
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        "rest_framework.authentication.TokenAuthentication",
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
 }
 
 # E-Mail Konfiguration aus Umgebungsvariablen
