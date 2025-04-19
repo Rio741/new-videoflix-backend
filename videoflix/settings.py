@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
-load_dotenv()  # Lädt die Umgebungsvariablen aus der .env-Datei
+load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -15,8 +15,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DATA_UPLOAD_MAX_MEMORY_SIZE = 104857600
 FILE_UPLOAD_MAX_MEMORY_SIZE = 104857600
 
-# Secret Key aus der .env-Datei
 SECRET_KEY = os.getenv('SECRET_KEY')
+if not SECRET_KEY:
+    raise ValueError("SECRET_KEY is not set in the environment variables.")
 
 DEBUG = False
 
@@ -48,13 +49,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
+
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:4200',
+    'https://videoflix.rio-stenger.de',
+]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://videoflix.rio-stenger.de',
     'https://*.rio-stenger.de',
+    'http://localhost:4200',
 ]
 
 ROOT_URLCONF = 'videoflix.urls'
@@ -77,13 +84,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'videoflix.wsgi.application'
 
-# Datenbank-Konfiguration aus Umgebungsvariablen
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv('POSTGRES_DB', 'videoflix_db'),
         'USER': os.getenv('POSTGRES_USER', 'rio96'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'geheim'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'your_password'),
         'HOST': os.getenv('POSTGRES_HOST', 'db'),
         'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
@@ -131,8 +137,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "user_auth_app.User"
@@ -147,12 +151,11 @@ REST_FRAMEWORK = {
     ),
 }
 
-# E-Mail Konfiguration aus Umgebungsvariablen
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.gmail.com')
 EMAIL_PORT = os.getenv('EMAIL_PORT', 587)
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'your_email@gmail.com')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'your_password')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'Videoflix <noreply@videoflix.com>')
 FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:4200')
