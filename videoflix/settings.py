@@ -21,7 +21,7 @@ if not SECRET_KEY:
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['videoflix.rio-stenger.de', '34.93.66.101', 'localhost', '127.0.0.1', '0.0.0.0', 'http://localhost:4200']
+ALLOWED_HOSTS = ['videoflix.rio-stenger.de', 'web.videoflix.rio-stenger.de', '34.93.66.101', 'localhost', '127.0.0.1', '0.0.0.0', 'http://localhost:4200']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -56,6 +56,7 @@ SESSION_COOKIE_SECURE = True
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:4200',
     'https://videoflix.rio-stenger.de',
+    'https://web.videoflix.rio-stenger.de'
 ]
 
 CSRF_TRUSTED_ORIGINS = [

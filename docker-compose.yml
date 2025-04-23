@@ -33,8 +33,6 @@ services:
       - redis
     volumes:
       - ./media:/usr/src/app/media
-    deploy:
-      replicas: 3
 
   nginx:
     image: nginx:latest
