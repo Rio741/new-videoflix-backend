@@ -21,7 +21,7 @@ if not SECRET_KEY:
 
 DEBUG = False
 
-ALLOWED_HOSTS = ['videoflix.rio-stenger.de', 'web.videoflix.rio-stenger.de', '34.93.66.101', 'localhost', '127.0.0.1', '0.0.0.0', 'http://localhost:4200']
+ALLOWED_HOSTS = ['videoflix.rio-stenger.de', 'web.videoflix.rio-stenger.de', '34.93.66.101', '127.0.0.1', '0.0.0.0', 'http://localhost:4200']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -159,4 +159,4 @@ EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'Videoflix <noreply@videoflix.com>')
-FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://localhost:4200')
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'https://web.videoflix.rio-stenger.de')
