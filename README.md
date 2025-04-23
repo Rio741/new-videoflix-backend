@@ -3,7 +3,7 @@
 Videoflix ist eine Streaming-Plattform, die es erlaubt, Videos hochzuladen, zu streamen und den Fortschritt beim Schauen zu speichern.  
 Das Projekt wurde mit **Django** umgesetzt und nutzt **Docker**, **Redis** und **PostgreSQL** im Hintergrund.
 
-> 🔗 **Live-Demo:** [https://videoflix.rio-stenger.de]
+> 🔗 **Live-Demo:** [https://web.videoflix.rio-stenger.de]
 > *(Frontend und Backend sind online und verbunden.)*
 
 ---
