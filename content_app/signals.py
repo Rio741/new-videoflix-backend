@@ -5,17 +5,21 @@ from .models import Video
 from .tasks import convert_to_hls
 import django_rq
 
+
 @receiver(post_save, sender=Video)
 def video_post_save(sender, instance, created, **kwargs):
-    """Startet automatisch die HLS-Konvertierung nach dem Hochladen"""
-    
+    """
+    Triggers HLS conversion when a new video is uploaded.
+
+    Enqueues the video file for background processing using django_rq.
+    """
     if created and instance.video_file:
         video_path = instance.video_file.path
-        print(f"🎬 Neues Video gespeichert: {video_path}")
+        print(f"🎬 New video saved: {video_path}")
 
         if os.path.exists(video_path):
             queue = django_rq.get_queue('default', autocommit=True)
             queue.enqueue(convert_to_hls, instance.id, video_path)
-            print("🚀 HLS-Umwandlung wurde in die Queue aufgenommen.")
+            print("🚀 HLS conversion task has been enqueued.")
         else:
-            print(f"❌ Datei nicht gefunden: {video_path}")
+            print(f"❌ File not found: {video_path}")

@@ -4,14 +4,17 @@ import logging
 from django_rq import job
 from content_app.models import Video
 
+
 FFMPEG_PATH = "/usr/bin/ffmpeg"
 
 logging.basicConfig(level=logging.INFO)
 
+
 @job
 def convert_to_hls(video_id, source):
-    """Konvertiert ein Video in HLS-Format (.m3u8 + .ts Segmente)"""
-    
+    """
+    Converts a video to HLS format (.m3u8 + .ts segments)
+    """
     if not os.path.exists(source):
         logging.error(f"❌ Fehler: Datei {source} existiert nicht!")
         return

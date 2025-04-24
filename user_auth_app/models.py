@@ -2,7 +2,11 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.db import models
 import uuid
 
+
 class CustomUserManager(BaseUserManager):
+    """
+    Custom manager to create regular users and superusers.
+    """
     def create_user(self, email, password=None):
         if not email:
             raise ValueError("Users must have an email address")
@@ -27,7 +31,12 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class User(AbstractBaseUser, PermissionsMixin):
+    """
+    Custom user model with email as the identifier.
+    Includes fields for account status and email verification.
+    """
     email = models.EmailField(unique=True)
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
