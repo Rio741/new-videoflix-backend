@@ -39,8 +39,7 @@ Die Erstellung der Anwendung lokal ist in der Regel nicht notwendig, da vorkompi
 - **Backend Docker Image:** [`rio96/videoflix`](https://hub.docker.com/repository/docker/rio96/videoflix/general)
 - **Worker Docker Image:** [`rio96/videoflix-worker`](https://hub.docker.com/repository/docker/rio96/videoflix-worker/general)
 
-
-## ⚙️ Voraussetzungen
+### ⚙️ Voraussetzungen
 
 Bevor du startest, stelle sicher, dass folgende Software installiert ist:
 
@@ -57,21 +56,18 @@ Verwende die folgenden Befehle, um die benötigten Docker-Images herunterzuladen
 ```bash
 docker pull rio96/videoflix
 docker pull rio96/videoflix-worker
+```
 
-
-## ▶️ 2. Anwendung starten
+### ▶️ 2. Anwendung starten
 
 Um die Anwendung zu starten, nutze **Docker Compose**. Stelle sicher, dass du die erforderlichen Konfigurationsdateien wie `docker-compose.yml`, `Dockerfile`, `nginx.conf` und andere aus dem GitHub-Repository heruntergeladen hast.
-
 
 ### Repository klonen und in das Verzeichnis wechseln
 
 Klonen **des** GitHub-Repositories, um die Konfigurationsdateien zu erhalten und wechsle in das Verzeichnis:
 
-```bash
-git clone https://github.com/Rio741/new-videoflix-backend.git
+git clone [https://github.com/Rio741/new-videoflix-backend.git](https://github.com/Rio741/new-videoflix-backend.git)
 cd videoflix
-
 
 ### Docker-Container im Hintergrund starten
 
@@ -85,4 +81,3 @@ docker-compose up -d
 - ![Coverage Screenshot](assets/test_coverage.png)  
 
 - Aktuell bei **88 %** – Ziel: 80 %+
-
