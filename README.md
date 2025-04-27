@@ -65,16 +65,20 @@ Um die Anwendung zu starten, nutze **Docker Compose**. Stelle sicher, dass du di
 ### Repository klonen und in das Verzeichnis wechseln
 
 Klonen **des** GitHub-Repositories, um die Konfigurationsdateien zu erhalten und wechsle in das Verzeichnis:
-
+```bash
 git clone [https://github.com/Rio741/new-videoflix-backend.git](https://github.com/Rio741/new-videoflix-backend.git)
+```
+```bash
 cd videoflix
+```
 
 ### Docker-Container im Hintergrund starten
 
 Starte die Anwendung und alle notwendigen Dienste im Hintergrund:
 
+```bash
 docker-compose up -d
-
+```
 ---
 
 ## 🧪 **Testabdeckung:**  
