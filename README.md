@@ -60,11 +60,11 @@ docker pull rio96/videoflix-worker
 
 ### ▶️ 2. Anwendung starten
 
-Um die Anwendung zu starten, nutze **Docker Compose**. Stelle sicher, dass du die erforderlichen Konfigurationsdateien wie `docker-compose.yml`, `Dockerfile`, `nginx.conf` und andere aus dem GitHub-Repository heruntergeladen hast.
+Um die Anwendung zu starten, nutze **Docker Compose**. Stelle sicher, dass du die erforderlichen Konfigurationsdateien wie `docker-compose.yml` und `nginx.conf` aus dem GitHub-Repository heruntergeladen hast.
 
 ### Repository klonen und in das Verzeichnis wechseln
 
-Klonen **des** GitHub-Repositories, um die Konfigurationsdateien zu erhalten und wechsle in das Verzeichnis:
+Klonen **des** GitHub-Repositories, um die Konfigurationsdateien zu erhalten, und wechsle in das Verzeichnis:
 ```bash
 git clone [https://github.com/Rio741/new-videoflix-backend.git](https://github.com/Rio741/new-videoflix-backend.git)
 ```
